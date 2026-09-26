@@ -307,7 +307,7 @@ dependencies {
 
     // Splash + wear helpers
     implementation("androidx.core:core-splashscreen:1.0.1")
-    implementation("androidx.wear:wear:1.3.0")
+    implementation("androidx.wear:wear:1.4.0")
 
     // Installs the Compose baseline profiles even when the app is sideloaded with adb (faster cold start)
     implementation("androidx.profileinstaller:profileinstaller:1.3.1")
