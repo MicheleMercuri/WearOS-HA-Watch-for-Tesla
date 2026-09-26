@@ -1,0 +1,41 @@
+#!/bin/sh
+# Refuses a commit that would publish a Home Assistant token, or a personal value from your
+# local.properties (URL host, LAN IP, token, entity IDs, names). Enable with:
+#   git config core.hooksPath .githooks
+# It never prints the values it looks for.
+
+# --text: binary files (images, ...) are scanned too
+added=$(git diff --cached -U0 --no-color --text | tr -d '\000' | grep -aE '^\+' | grep -av '^+++')
+status=0
+
+# Anything shaped like a JWT (Home Assistant long-lived tokens are JWTs)
+if printf '%s\n' "$added" | grep -Eq 'eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.'; then
+    echo "pre-commit: a staged change contains a token (eyJ...). Commit refused." >&2
+    status=1
+fi
+
+# Personal values from local.properties (the file itself is ignored by git).
+# Accepts key=value, key = value and key: value, with Windows or Unix line endings.
+if [ -f local.properties ]; then
+    list=$(mktemp)
+    trap 'rm -f "$list" "$list.2"' EXIT
+    if ! tr -d '\r' < local.properties \
+        | sed -nE 's/^[[:space:]]*(ha\.url|ha\.lan_ip|ha\.token|car\.name|home\.(gate|light)_[12](\.name)?|entity\.[a-z_]+)[[:space:]]*[=:][[:space:]]*//p' \
+        | sed -E 's#\\##g; s#^[A-Za-z]+://##; s#/.*$##; s#:[0-9]+$##' \
+        | grep -Ev '^.{0,3}$' > "$list"; then
+        : # no personal values found: nothing to check
+    fi
+    if [ ! -s "$list" ] && grep -Eq '^[[:space:]]*(ha\.url|ha\.token)' local.properties; then
+        echo "pre-commit: could not read the values in local.properties. Commit refused to be safe." >&2
+        exit 1
+    fi
+    # Generic values that also appear in the example file are not personal
+    grep -Fvx -e 'Model 3' -e 'model3' -e 'Driveway' -e 'Pedestrian' -e 'Front' -e 'Garden' -e 'none' "$list" > "$list.2"
+    mv "$list.2" "$list"
+    if [ -s "$list" ] && printf '%s\n' "$added" | grep -Fq -f "$list"; then
+        echo "pre-commit: a staged change contains a value from local.properties. Commit refused." >&2
+        status=1
+    fi
+fi
+
+exit $status

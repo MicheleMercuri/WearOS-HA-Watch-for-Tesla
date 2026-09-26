@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/tesla_black" />
+    <item
+        android:drawable="@drawable/ic_model3"
+        android:gravity="center"
+        android:width="120dp"
+        android:height="60dp" />
+</layer-list>

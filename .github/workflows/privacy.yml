@@ -1,0 +1,46 @@
+name: Privacy check
+
+# Runs on every push and pull request: the repository must never contain a token or the
+# maintainer's private values (Home Assistant host, LAN IP, entity IDs...). Those values live in
+# the encrypted PRIVATE_PATTERNS secret, one per line, and are never printed: only file names are.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Tokens and keys in the whole history (gitleaks)
+        run: docker run --rm -v "$PWD:/repo" ghcr.io/gitleaks/gitleaks:v8.18.4 detect --source /repo --redact --no-banner -v
+
+      - name: Maintainer's private values (all commits)
+        env:
+          PRIVATE_PATTERNS: ${{ secrets.PRIVATE_PATTERNS }}
+        run: |
+          if [ -z "$PRIVATE_PATTERNS" ]; then
+            echo "PRIVATE_PATTERNS is not available here (e.g. a pull request from a fork): skipped."
+            exit 0
+          fi
+          patterns=$(mktemp)
+          printf '%s\n' "$PRIVATE_PATTERNS" | tr -d '\r' | grep -v '^$' > "$patterns"
+          found=0
+          for commit in $(git rev-list --all); do
+            if git grep --text -F -l -f "$patterns" "$commit" -- . > /tmp/hits 2>/dev/null; then
+              echo "::error::Private value found in commit $commit, files:"
+              sed 's/^[^:]*://' /tmp/hits
+              found=1
+            fi
+          done
+          rm -f "$patterns"
+          exit $found

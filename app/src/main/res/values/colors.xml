@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tesla_red">#E31937</color>
+    <color name="tesla_black">#000000</color>
+    <color name="tesla_surface">#1C1C1E</color>
+    <color name="tesla_white">#FFFFFF</color>
+    <color name="tesla_gray">#8E8E93</color>
+</resources>

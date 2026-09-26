@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Tesla Watch</string>
+    <string name="complication_battery_label">Tesla battery</string>
+    <string name="tile_quick_actions_label" translatable="false">Tesla</string>
+
+    <!-- Main screen -->
+    <string name="status_charging">Charging</string>
+    <string name="status_asleep">Asleep</string>
+    <string name="status_online">Online</string>
+    <string name="no_data">No data: tap Wake up</string>
+    <string name="status_offline">Offline</string>
+    <string name="locked">Locked</string>
+    <string name="unlocked">Unlocked</string>
+    <string name="lock">Lock</string>
+    <string name="unlock">Unlock</string>
+    <string name="climate">Climate</string>
+    <string name="doors">Doors</string>
+    <string name="charge">Charge</string>
+    <string name="charge_port_open">Charge port</string>
+    <string name="charge_port_close">Close port</string>
+    <string name="unlock_cable">Release cable</string>
+    <string name="horn">Horn</string>
+    <string name="flash">Lights</string>
+    <string name="wake">Wake up</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+
+    <!-- Climate -->
+    <string name="header_climate">CLIMATE</string>
+    <string name="inside">Inside</string>
+    <string name="outside">Outside</string>
+    <string name="target">Target</string>
+    <string name="vent_windows">Vent</string>
+    <string name="close_windows">Close win.</string>
+    <string name="preset">Preset</string>
+    <string name="preset_normal">Normal</string>
+    <string name="preset_defrost">Defrost</string>
+    <string name="preset_keep">Keep</string>
+    <string name="preset_dog">Dog</string>
+    <string name="preset_camp">Camp</string>
+
+    <!-- Doors -->
+    <string name="header_doors">DOORS / TRUNK</string>
+    <string name="frunk">Frunk</string>
+    <string name="windows">Windows</string>
+    <string name="windows_open">open</string>
+    <string name="windows_closed">closed</string>
+
+    <!-- Charging -->
+    <string name="header_charging">CHARGING</string>
+    <string name="battery">Battery</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="limit">Limit</string>
+    <string name="amps">Amps</string>
+    <string name="power">Power</string>
+    <string name="state">Status</string>
+    <string name="charging_active">ACTIVE</string>
+    <string name="charging_stopped">STOPPED</string>
+
+    <!-- Home -->
+    <string name="header_home">HOME</string>
+
+    <!-- Settings -->
+    <string name="header_settings">SETTINGS</string>
+    <string name="setting_url">URL</string>
+    <string name="setting_lan">Local IP</string>
+    <string name="setting_token">Token</string>
+    <string name="setting_route">Route</string>
+    <string name="route_lan">home network</string>
+    <string name="route_wan">remote</string>
+    <string name="not_set">(not set)</string>
+    <string name="test">Test</string>
+    <string name="test_ok">OK ✓ %1$s%%</string>
+    <string name="test_ko">KO: %1$s</string>
+
+    <!-- Commands and errors -->
+    <string name="no_data_short">No data</string>
+    <string name="err_missing">%1$d entities not found (e.g. %2$s): check tesla.prefix / entity.*</string>
+    <string name="err_no_token">Token missing: run ./gradlew provisionToken</string>
+    <string name="err_401">Token rejected (401): provision a valid one</string>
+    <string name="err_unconfirmed">Sent, no answer: checking the car</string>
+    <string name="lock_confirmed">Locked ✓</string>
+    <string name="lock_not_confirmed">Lock NOT confirmed</string>
+    <string name="unlock_confirmed">Unlocked ✓</string>
+    <string name="unlock_not_confirmed">Unlock not confirmed</string>
+    <string name="gate_cooldown">%1$s: already sent, wait</string>
+    <string name="gate_sent">%1$s ✓</string>
+    <string name="sending">Sending…</string>
+    <string name="open_trunk">Open trunk</string>
+    <string name="close_trunk">Close trunk</string>
+    <string name="setting_read">Read</string>
+    <string name="read_template">template (admin)</string>
+    <string name="read_states">per entity</string>
+    <string name="token_missing_short">missing</string>
+    <string name="err_http_wifi">http: only on Wi-Fi (token unencrypted)</string>
+    <string name="err_403">Refused by Home Assistant (403): IP banned? Check ip_bans.yaml</string>
+    <string name="err_pending">Previous command still without answer: wait</string>
+    <string name="gate_unavailable">%1$s: entity unavailable in Home Assistant</string>
+    <string name="turn_on">Turn on</string>
+    <string name="turn_off">Turn off</string>
+    <string name="sentry_turn_on">Sentry on</string>
+    <string name="sentry_turn_off">Sentry off</string>
+    <string name="lock_unknown">lock ?</string>
+    <string name="command_channel">Car commands</string>
+    <string name="command_running">Sending to the car…</string>
+    <string name="stale_data">Data not current</string>
+</resources>

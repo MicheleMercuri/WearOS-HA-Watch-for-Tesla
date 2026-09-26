@@ -1,0 +1,29 @@
+# Personal configuration: URL, token, entity IDs. Never commit (also backups and sync copies).
+local.properties
+local*.properties
+local.properties*
+!local.properties.example
+keystore.properties
+
+# Signing keys, heap dumps (may contain the token)
+*.jks
+*.keystore
+*.hprof
+
+# Build output
+*.apk
+*.aab
+/build
+/app/build
+/app/release
+/captures
+.externalNativeBuild
+.cxx
+
+# IDE / Gradle / Kotlin caches
+*.iml
+.gradle
+.kotlin
+/.idea
+.vscode/
+.DS_Store

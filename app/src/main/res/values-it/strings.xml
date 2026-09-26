@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="complication_battery_label">Batteria Tesla</string>
+
+    <string name="status_charging">In ricarica</string>
+    <string name="status_asleep">Addormentata</string>
+    <string name="status_online">Online</string>
+    <string name="no_data">Nessun dato: premi Sveglia</string>
+    <string name="status_offline">Offline</string>
+    <string name="locked">Bloccata</string>
+    <string name="unlocked">Sbloccata</string>
+    <string name="lock">Blocca</string>
+    <string name="unlock">Sblocca</string>
+    <string name="climate">Clima</string>
+    <string name="doors">Porte</string>
+    <string name="charge">Carica</string>
+    <string name="charge_port_open">Sport. ric.</string>
+    <string name="charge_port_close">Chiudi sport.</string>
+    <string name="unlock_cable">Sblocca cavo</string>
+    <string name="horn">Clacson</string>
+    <string name="flash">Fari</string>
+    <string name="wake">Sveglia</string>
+    <string name="home">Casa</string>
+    <string name="settings">Impostazioni</string>
+
+    <string name="header_climate">CLIMA</string>
+    <string name="inside">Interno</string>
+    <string name="outside">Esterno</string>
+    <string name="target">Target</string>
+    <string name="vent_windows">Apri fin.</string>
+    <string name="close_windows">Chiudi fin.</string>
+    <string name="preset">Preset</string>
+    <string name="preset_normal">Normale</string>
+    <string name="preset_defrost">Defrost</string>
+    <string name="preset_keep">Mantieni</string>
+    <string name="preset_dog">Cane</string>
+    <string name="preset_camp">Camp</string>
+
+    <string name="header_doors">PORTE / BAULE</string>
+    <string name="frunk">Frunk</string>
+    <string name="windows">Finestrini</string>
+    <string name="windows_open">aperti</string>
+    <string name="windows_closed">chiusi</string>
+
+    <string name="header_charging">RICARICA</string>
+    <string name="battery">Batteria</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="limit">Limite</string>
+    <string name="amps">Ampere</string>
+    <string name="power">Potenza</string>
+    <string name="state">Stato</string>
+    <string name="charging_active">ATTIVA</string>
+    <string name="charging_stopped">FERMA</string>
+
+    <string name="header_home">CASA</string>
+
+    <string name="header_settings">IMPOSTAZIONI</string>
+    <string name="setting_url">Indirizzo</string>
+    <string name="setting_lan">IP locale</string>
+    <string name="setting_token">Token</string>
+    <string name="setting_route">Percorso</string>
+    <string name="route_lan">rete di casa</string>
+    <string name="route_wan">remoto</string>
+    <string name="not_set">(non impostato)</string>
+    <string name="test">Test</string>
+    <string name="test_ok">OK ✓ %1$s%%</string>
+    <string name="test_ko">KO: %1$s</string>
+
+    <!-- Commands and errors -->
+    <string name="no_data_short">Nessun dato</string>
+    <string name="err_missing">%1$d entità non trovate (es. %2$s): controlla tesla.prefix / entity.*</string>
+    <string name="err_no_token">Token mancante: esegui ./gradlew provisionToken</string>
+    <string name="err_401">Token rifiutato (401): caricane uno valido</string>
+    <string name="err_unconfirmed">Inviato, nessuna risposta: controllo l’auto</string>
+    <string name="lock_confirmed">Bloccata ✓</string>
+    <string name="lock_not_confirmed">Blocco NON confermato</string>
+    <string name="unlock_confirmed">Sbloccata ✓</string>
+    <string name="unlock_not_confirmed">Sblocco non confermato</string>
+    <string name="gate_cooldown">%1$s: già inviato, attendi</string>
+    <string name="gate_sent">%1$s ✓</string>
+    <string name="sending">Invio…</string>
+    <string name="open_trunk">Apri baule</string>
+    <string name="close_trunk">Chiudi baule</string>
+    <string name="setting_read">Lettura</string>
+    <string name="read_template">template (admin)</string>
+    <string name="read_states">per entità</string>
+    <string name="token_missing_short">mancante</string>
+    <string name="err_http_wifi">http: solo in Wi-Fi (token non cifrato)</string>
+    <string name="err_403">Rifiutato da Home Assistant (403): IP bannato? Controlla ip_bans.yaml</string>
+    <string name="err_pending">Comando precedente ancora senza risposta: attendi</string>
+    <string name="gate_unavailable">%1$s: entità non disponibile in Home Assistant</string>
+    <string name="turn_on">Accendi</string>
+    <string name="turn_off">Spegni</string>
+    <string name="sentry_turn_on">Attiva Sentry</string>
+    <string name="sentry_turn_off">Spegni Sentry</string>
+    <string name="lock_unknown">serratura ?</string>
+    <string name="command_channel">Comandi auto</string>
+    <string name="command_running">Invio all’auto…</string>
+    <string name="stale_data">Dati non aggiornati</string>
+</resources>

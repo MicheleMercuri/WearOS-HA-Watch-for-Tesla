@@ -1,0 +1,79 @@
+# Copy this file to local.properties (same folder) and fill it in. Saved as UTF-8.
+# local.properties is in .gitignore: it holds your token, never commit it.
+# Everything except ha.token is compiled into the APK, so rebuild after a change.
+# Unknown keys stop the build, so a typo cannot silently disable something.
+
+# Android SDK path. Android Studio writes it by itself; set it only when building
+# from the command line without ANDROID_HOME (on Windows: C:/Users/you/AppData/Local/Android/Sdk).
+#sdk.dir=/path/to/Android/Sdk
+
+# --- Home Assistant -------------------------------------------------------------
+
+# How the watch reaches Home Assistant: scheme://host[:port] only, no path.
+# Must be https unless you set ha.allow_http=true below.
+ha.url=https://your-home-assistant.example.com
+
+# Long-lived access token (HA profile > Security > Long-lived access tokens).
+# It is NOT compiled into the APK: after installing, run  ./gradlew provisionToken
+# to send it to the watch, where it is stored encrypted. See "Token" in the README
+# for the admin / non-admin trade-off.
+ha.token=PASTE_YOUR_TOKEN_HERE
+
+# Optional local shortcut. When the watch is on Wi-Fi it connects straight to this IP,
+# but still speaks HTTPS to the ha.url host name and verifies its certificate: on any
+# other network the check fails before the token is sent, and the app uses ha.url.
+# Works only if the same certificate is served on this IP and on the ha.url port
+# (typical with the NGINX or Caddy add-on). Leave empty with Nabu Casa.
+ha.lan_ip=
+
+# Only for Home Assistant without HTTPS (e.g. http://homeassistant.local:8123).
+# The watch then sends your token UNENCRYPTED and automatically (tile, complication) to whatever
+# device answers that name or IP on the Wi-Fi it is on, hotel networks included. Prefer HTTPS.
+ha.allow_http=false
+
+# How the app reads the states. auto: tries the single-call template API (admin tokens only) and
+# remembers the answer per token; its first attempt with a non-admin token counts as one failed
+# login in Home Assistant. states: always reads entity by entity (use it with a non-admin token).
+ha.read_mode=auto
+
+# --- Car ------------------------------------------------------------------------
+
+# Name shown at the top of the app and of the tile.
+car.name=Model 3
+
+# Entity prefix of the Tesla Custom Integration (HACS): the car name as a slug,
+# e.g. sensor.model3_battery -> model3
+tesla.prefix=model3
+
+# Any single entity can be overridden. An override must keep the same domain as the default
+# (entity.charging may also be a sensor whose state is "charging"). Optional entities your
+# integration does not have can be set to none, and their buttons disappear: asleep,
+# force_update, charger_power, temp_inside, temp_outside, sentry, horn, flash_lights, windows,
+# charge_port_latch, charger_door, frunk.
+# Valid keys: battery, range, temp_inside, temp_outside, charger_power, doors,
+# charge_port_latch, frunk, trunk, windows, charger_door, climate, online, asleep,
+# charging, sentry, charger, charge_limit, charging_amps, horn, flash_lights,
+# wake_up, force_update
+#entity.battery=sensor.my_car_battery_level
+#entity.charging=sensor.my_car_charging
+#entity.asleep=none
+
+# --- Optional smart home buttons -------------------------------------------------
+# Anything left empty does not appear on the watch.
+
+# Gates: one-tap momentary actions, shown in the app AND on the tile.
+# button / input_button -> press, script / switch -> turn_on, cover -> open_cover,
+# lock -> unlock. A switch driving a gate must have an auto-off (e.g. Shelly
+# "auto off" after 1 s), otherwise wrap it in a script. While a call for a gate is
+# running and for 10 s after it, taps on that gate are refused (a second pulse would stop
+# or reverse many gates).
+home.gate_1=
+home.gate_1.name=Driveway
+home.gate_2=
+home.gate_2.name=Pedestrian
+
+# Lights: on/off buttons in the app (switch, light, input_boolean, fan).
+home.light_1=
+home.light_1.name=Front
+home.light_2=
+home.light_2.name=Garden
