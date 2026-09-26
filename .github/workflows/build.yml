@@ -18,7 +18,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@v6
       # No local.properties in CI: this checks that the generic configuration compiles,
       # both the debug build and the minified release build the README tells you to use
       - name: Build debug and release APKs
