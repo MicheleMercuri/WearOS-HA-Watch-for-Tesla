@@ -46,7 +46,8 @@ fun MainScreen(
     onHome: () -> Unit,
     onSettings: () -> Unit
 ) {
-    val listState = rememberScalingLazyListState()
+    // Start at the very top (car header fully visible): Wear OS would center the second item
+    val listState = rememberScalingLazyListState(initialCenterItemIndex = 0)
 
     Scaffold(
         timeText = { TimeText() },
@@ -55,6 +56,7 @@ fun MainScreen(
     ) {
         ScalingLazyColumn(
             state = listState,
+            autoCentering = null,
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             contentPadding = PaddingValues(top = 28.dp, bottom = 28.dp, start = 8.dp, end = 8.dp),

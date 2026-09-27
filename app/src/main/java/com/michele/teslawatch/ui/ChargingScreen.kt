@@ -31,7 +31,8 @@ private const val AMPS_STEP = 1
 @Composable
 fun ChargingScreen(state: TeslaState) {
     val repo = TeslaWatchApp.instance.repo
-    val listState = rememberScalingLazyListState()
+    // Start at the very top (car header fully visible): Wear OS would center the second item
+    val listState = rememberScalingLazyListState(initialCenterItemIndex = 0)
 
     // Values chosen with +/- leave as one call with the final value; limits come from the number entities
     val limit = rememberStepper(state.chargeLimit) { repo.setChargeLimit(it) }
@@ -50,6 +51,7 @@ fun ChargingScreen(state: TeslaState) {
     ) {
         ScalingLazyColumn(
             state = listState,
+            autoCentering = null,
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             contentPadding = PaddingValues(top = 28.dp, bottom = 28.dp, start = 8.dp, end = 8.dp),

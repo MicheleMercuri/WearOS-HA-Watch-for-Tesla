@@ -25,7 +25,8 @@ import com.michele.teslawatch.ui.theme.TeslaColors
 @Composable
 fun TrunkScreen(state: TeslaState) {
     val repo = TeslaWatchApp.instance.repo
-    val listState = rememberScalingLazyListState()
+    // Start at the very top (car header fully visible): Wear OS would center the second item
+    val listState = rememberScalingLazyListState(initialCenterItemIndex = 0)
     // Placeholder data says "open": show nothing as open until the integration has real data
     val known = state.dataValid
     val frunkOpen = known && state.frunkOpen
@@ -39,6 +40,7 @@ fun TrunkScreen(state: TeslaState) {
     ) {
         ScalingLazyColumn(
             state = listState,
+            autoCentering = null,
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             contentPadding = PaddingValues(top = 28.dp, bottom = 28.dp, start = 8.dp, end = 8.dp),

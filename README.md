@@ -76,7 +76,7 @@ Watch ──HTTPS──> Home Assistant REST API ──> Tesla integration ─�
   an override must keep the same domain (`entity.charging` may also be a sensor), the climate
   presets are the Tesla Custom ones, and some entities (asleep, force data update) may not exist.
 - To build: Android Studio (Ladybug or newer), or **JDK 17 or 21** + the Android SDK
-  (Gradle 8.9 does not run on JDK 23 or newer).
+  (platform 36).
 - `adb`, to install the app and send the token (apps outside the Play Store are sideloaded).
 
 ## Setup

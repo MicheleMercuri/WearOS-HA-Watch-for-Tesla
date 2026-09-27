@@ -3,6 +3,7 @@ import java.io.FileInputStream
 import java.io.InputStreamReader
 import java.net.URI
 import java.util.Properties
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id("com.android.application")
@@ -143,14 +144,14 @@ if (!Regex("^[a-z0-9_]+$").matches(teslaPrefix)) configError("tesla.prefix = '$t
 
 android {
     namespace = "com.michele.teslawatch"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.michele.teslawatch"
         minSdk = 30
         targetSdk = 34
-        versionCode = 4
-        versionName = "1.3"
+        versionCode = 5
+        versionName = "1.3.1"
 
         buildConfigField("String", "HA_URL", quoted("ha.url", haUrlNormalized))
         buildConfigField("String", "HA_LAN_IP", quoted("ha.lan_ip", haLanIp))
@@ -201,7 +202,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions { jvmTarget = "17" }
     buildFeatures {
         compose = true
         buildConfig = true
@@ -213,6 +213,10 @@ android {
         checkReleaseBuilds = false
         abortOnError = false
     }
+}
+
+kotlin {
+    compilerOptions { jvmTarget.set(JvmTarget.JVM_17) }
 }
 
 // ---------------------------------------------------------------------------
@@ -281,37 +285,38 @@ tasks.register("clearToken") {
 }
 
 dependencies {
-    val composeBom = platform("androidx.compose:compose-bom:2024.10.01")
+    // Newest versions that still build with compile SDK 36 and AGP 8.x: Compose 1.12, Wear Compose 1.7
+    // and Lifecycle 2.11 need compile SDK 37 and AGP 9.1
+    val composeBom = platform("androidx.compose:compose-bom:2026.06.01")
     implementation(composeBom)
 
     // Wear Compose
-    implementation("androidx.wear.compose:compose-material:1.4.0")
-    implementation("androidx.wear.compose:compose-foundation:1.4.0")
-    implementation("androidx.wear.compose:compose-navigation:1.4.0")
+    implementation("androidx.wear.compose:compose-material:1.6.2")
+    implementation("androidx.wear.compose:compose-foundation:1.6.2")
+    implementation("androidx.wear.compose:compose-navigation:1.6.2")
 
     // Activity + lifecycle
-    implementation("androidx.activity:activity-compose:1.9.3")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+    implementation("androidx.activity:activity-compose:1.13.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0")
 
     // Networking
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
 
     // Wear tiles + complications
-    implementation("androidx.wear.tiles:tiles:1.4.0")
-    implementation("androidx.wear.tiles:tiles-material:1.4.0")
-    implementation("androidx.wear.protolayout:protolayout:1.2.0")
-    implementation("androidx.wear.protolayout:protolayout-material:1.2.0")
-    implementation("androidx.wear.protolayout:protolayout-expression:1.2.0")
-    implementation("androidx.wear.watchface:watchface-complications-data-source-ktx:1.2.1")
+    implementation("androidx.wear.tiles:tiles:1.6.2")
+    implementation("androidx.wear.protolayout:protolayout:1.4.2")
+    implementation("androidx.wear.protolayout:protolayout-material:1.4.2")
+    implementation("androidx.wear.protolayout:protolayout-expression:1.4.2")
+    implementation("androidx.wear.watchface:watchface-complications-data-source-ktx:1.3.0")
 
     // Splash + wear helpers
-    implementation("androidx.core:core-splashscreen:1.0.1")
-    implementation("androidx.wear:wear:1.3.0")
+    implementation("androidx.core:core-splashscreen:1.2.0")
+    implementation("androidx.wear:wear:1.4.0")
 
     // Installs the Compose baseline profiles even when the app is sideloaded with adb (faster cold start)
-    implementation("androidx.profileinstaller:profileinstaller:1.3.1")
+    implementation("androidx.profileinstaller:profileinstaller:1.4.1")
 
     // Guava for ListenableFuture (used by Tile service)
-    implementation("com.google.guava:guava:33.3.1-android")
+    implementation("com.google.guava:guava:33.7.1-android")
 }

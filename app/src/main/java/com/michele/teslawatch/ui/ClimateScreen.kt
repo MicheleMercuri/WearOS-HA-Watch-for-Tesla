@@ -41,7 +41,8 @@ private val presets = listOf(
 fun ClimateScreen(state: TeslaState) {
     val repo = TeslaWatchApp.instance.repo
     val scope = rememberCoroutineScope()
-    val listState = rememberScalingLazyListState()
+    // Start at the very top (car header fully visible): Wear OS would center the second item
+    val listState = rememberScalingLazyListState(initialCenterItemIndex = 0)
 
     // Limits and step come from the climate entity, so they follow HA's unit system (°C or °F)
     val min = state.climateMin ?: 15.0
@@ -57,6 +58,7 @@ fun ClimateScreen(state: TeslaState) {
     ) {
         ScalingLazyColumn(
             state = listState,
+            autoCentering = null,
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             contentPadding = PaddingValues(top = 28.dp, bottom = 28.dp, start = 8.dp, end = 8.dp),
