@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.1 (2026-09-27)
+
+- Screens open at the top, with the car picture fully visible (Wear OS centred the second item).
+- Coordinated library update: Kotlin 2.4.20, Android Gradle Plugin 8.13.2, Gradle 8.14.5,
+  compile SDK 36 (target stays 34), Compose BOM 2026.09 and Wear Compose 1.7.0, Wear Tiles 1.6.2 with
+  ProtoLayout 1.4.2, and current AndroidX, kotlinx-serialization and Guava. Unused tiles-material removed.
+- Dependabot groups libraries that only work at matching versions.
+
 ## 1.3 (2026-09-26): first public release
 
 ### Configuration

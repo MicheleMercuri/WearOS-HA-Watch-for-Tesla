@@ -30,7 +30,8 @@ import com.michele.teslawatch.ui.theme.TeslaColors
 fun SettingsScreen() {
     val app = TeslaWatchApp.instance
     val repo = app.repo
-    val listState = rememberScalingLazyListState()
+    // Start at the very top (car header fully visible): Wear OS would center the second item
+    val listState = rememberScalingLazyListState(initialCenterItemIndex = 0)
 
     var testResult by remember { mutableStateOf<String?>(null) }
     var testOk by remember { mutableStateOf(false) }
@@ -48,6 +49,7 @@ fun SettingsScreen() {
     ) {
         ScalingLazyColumn(
             state = listState,
+            autoCentering = null,
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             contentPadding = PaddingValues(top = 28.dp, bottom = 28.dp, start = 8.dp, end = 8.dp),

@@ -4,7 +4,32 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    # Libraries that only work at matching versions come in one pull request:
+    # a single-library bump (e.g. one Kotlin plugin, one protolayout artifact) cannot build.
+    groups:
+      kotlin:
+        patterns:
+          - "org.jetbrains.kotlin*"
+          - "org.jetbrains.kotlinx*"
+      wear-tiles:
+        patterns:
+          - "androidx.wear.tiles*"
+          - "androidx.wear.protolayout*"
+      compose:
+        patterns:
+          - "androidx.compose*"
+          - "androidx.wear.compose*"
+      android-toolchain:
+        patterns:
+          - "com.android.*"
+      androidx:
+        patterns:
+          - "androidx.*"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: weekly
+    groups:
+      actions:
+        patterns:
+          - "*"
