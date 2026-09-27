@@ -4,6 +4,17 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    # Compose 1.12+, Wear Compose 1.7+ and Lifecycle 2.11+ need compile SDK 37 and AGP 9:
+    # they belong to a separate, manual toolchain migration
+    ignore:
+      - dependency-name: "androidx.compose:compose-bom"
+        versions: [">= 2026.08.00"]
+      - dependency-name: "androidx.wear.compose:*"
+        versions: [">= 1.7.0"]
+      - dependency-name: "androidx.lifecycle:*"
+        versions: [">= 2.11.0"]
+      - dependency-name: "com.android.application"
+        versions: [">= 9.0.0"]
     # Libraries that only work at matching versions come in one pull request:
     # a single-library bump (e.g. one Kotlin plugin, one protolayout artifact) cannot build.
     groups:

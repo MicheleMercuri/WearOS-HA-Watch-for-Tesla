@@ -285,17 +285,19 @@ tasks.register("clearToken") {
 }
 
 dependencies {
-    val composeBom = platform("androidx.compose:compose-bom:2026.09.00")
+    // Newest versions that still build with compile SDK 36 and AGP 8.x: Compose 1.12, Wear Compose 1.7
+    // and Lifecycle 2.11 need compile SDK 37 and AGP 9.1
+    val composeBom = platform("androidx.compose:compose-bom:2026.06.01")
     implementation(composeBom)
 
     // Wear Compose
-    implementation("androidx.wear.compose:compose-material:1.7.0")
-    implementation("androidx.wear.compose:compose-foundation:1.7.0")
-    implementation("androidx.wear.compose:compose-navigation:1.7.0")
+    implementation("androidx.wear.compose:compose-material:1.6.2")
+    implementation("androidx.wear.compose:compose-foundation:1.6.2")
+    implementation("androidx.wear.compose:compose-navigation:1.6.2")
 
     // Activity + lifecycle
     implementation("androidx.activity:activity-compose:1.13.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.11.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0")
 
     // Networking
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
