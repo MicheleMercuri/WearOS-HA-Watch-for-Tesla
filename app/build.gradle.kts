@@ -318,5 +318,5 @@ dependencies {
     implementation("androidx.profileinstaller:profileinstaller:1.4.1")
 
     // Guava for ListenableFuture (used by Tile service)
-    implementation("com.google.guava:guava:33.7.1-android")
+    implementation("com.google.guava:guava:33.7.2-android")
 }
